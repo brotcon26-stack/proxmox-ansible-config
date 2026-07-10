@@ -1,0 +1,4 @@
+ungrouped:
+  hosts:
+    gondor.lab:
+      ansible_user: root
