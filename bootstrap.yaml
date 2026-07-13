@@ -1,18 +1,24 @@
 - name: Bootstrap nodes with admin user and keys
   hosts: all
+  
+  vars_prompt:
+    - name: admin_password
+      prompt: "Enter password for admin user: "
+      private: yes  
+  
   tasks:
 
-  - name: install sudo package
-    ansible.builtin.apt:
-      name: sudo
-      update_cache: true
+  #- name: install sudo package
+  #  ansible.builtin.apt:
+  #    name: sudo
+  #    update_cache: true
 
   - name: create user for ssh and ansible
     ansible.builtin.user:
       name: admin
       groups: sudo
-
+      password: "{{ admin_password | password_hash('sha512') }}"
   - name: Send ssh keys
     ansible.posix.authorized_key: 
       user: admin
-      key: "{{ lookup('file', '~/.ssh/id_ed25519.pub') }}"
+      key: "{{ lookup('file', '/home/brotcon26/.ssh/id_ed25519.pub') }}"
