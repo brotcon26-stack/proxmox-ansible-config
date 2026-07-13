@@ -1,0 +1,7 @@
+- name: disable network offloading for dell nics
+  hosts: all
+
+  tasks:
+    - name: Display all interfaces name
+      debug:
+        var: ansible_default_ipv4.interface
