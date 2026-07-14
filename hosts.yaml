@@ -1,4 +1,6 @@
-ungrouped:
+pve-hosts:
   hosts:
-    gondor.lab:
-      ansible_user: root
+    gondortwo.lab:
+      ansible_user: admin
+    #rohan.lab:
+    #  ansible_user: admin

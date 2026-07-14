@@ -1,0 +1,26 @@
+- name: switch to non enterprise repos and update
+  hosts: pve-hosts
+  become: true
+
+  tasks:
+    - name: copy new repo file to hosts
+      ansible.builtin.copy:
+        src: proxmox.sources
+        dest: /etc/apt/sources.list.d/proxmox.sources
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: remove old proxmox repo file
+      ansible.builtin.file:
+        path: /etc/apt/sources.list.d/pve-enterprise.sources
+        state: absent
+
+    - name: remove old ceph repo file
+      ansible.builtin.file:
+        path: /etc/apt/sources.list.d/ceph.sources
+        state: absent
+
+    - name: update package cache with new repos
+      ansible.builtin.apt:
+        update_cache: true
