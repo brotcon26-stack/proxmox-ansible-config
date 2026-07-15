@@ -1,0 +1,9 @@
+- name: update packages on pve hosts
+  hosts: pvehosts
+  become: true
+
+  tasks:
+    - name: run apt update && apt upgrade equivilent
+      ansible.builtin.apt:
+        name: "*"
+        state: latest
