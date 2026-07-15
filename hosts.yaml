@@ -1,6 +1,6 @@
-pve-hosts:
+pvehosts:
   hosts:
     gondortwo.lab:
       ansible_user: admin
-    #rohan.lab:
-    #  ansible_user: admin
+    rohan.lab:
+      ansible_user: admin

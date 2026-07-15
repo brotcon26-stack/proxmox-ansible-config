@@ -1,5 +1,5 @@
 - name: switch to non enterprise repos and update
-  hosts: pve-hosts
+  hosts: pvehosts
   become: true
 
   tasks:
